@@ -634,6 +634,7 @@ MonoBehaviour:
   tbOffset: 0
   fbOffset: 0
   shatterClip: {fileID: 8300000, guid: f3b18328ce93da4479491b3287d11872, type: 3}
+  torque: 10
 --- !u!4 &727033548
 Transform:
   m_ObjectHideFlags: 0

@@ -167,6 +167,13 @@ public class WorldCube : MonoBehaviour {
         //    ShaveBack();
     }
 
+
+    public float torque = 30;
+    void FixedUpdate()
+    {
+        transform.RotateAround(center, new Vector3(1, 1, 0), Time.fixedDeltaTime * torque);//((new Vector3(1, 1, 0)).normalized * Time.fixedDeltaTime*90);
+    }
+
     TilePatchFace newFace(int w, int h, Vector3 normal, float dist)
     {
         TilePatchFace face = ((GameObject)Instantiate(facePrefab)).GetComponent<TilePatchFace>();
