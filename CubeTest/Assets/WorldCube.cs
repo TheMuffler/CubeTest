@@ -153,18 +153,18 @@ public class WorldCube : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Z))
-            ShaveRight();
-        if (Input.GetKeyDown(KeyCode.X))
-            ShaveTop();
-        if (Input.GetKeyDown(KeyCode.C))
-            ShaveLeft();
-        if (Input.GetKeyDown(KeyCode.V))
-            ShaveBottom();
-        if (Input.GetKeyDown(KeyCode.B))
-            ShaveFront();
-        if (Input.GetKeyDown(KeyCode.N))
-            ShaveBack();
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //    ShaveRight();
+        //if (Input.GetKeyDown(KeyCode.X))
+        //    ShaveTop();
+        //if (Input.GetKeyDown(KeyCode.C))
+        //    ShaveLeft();
+        //if (Input.GetKeyDown(KeyCode.V))
+        //    ShaveBottom();
+        //if (Input.GetKeyDown(KeyCode.B))
+        //    ShaveFront();
+        //if (Input.GetKeyDown(KeyCode.N))
+        //    ShaveBack();
     }
 
     TilePatchFace newFace(int w, int h, Vector3 normal, float dist)
@@ -181,7 +181,7 @@ public class WorldCube : MonoBehaviour {
         return face;
     }
 
-    void ShaveRight()
+    public void ShaveRight()
     {
         if (width <= 1)
             return;
@@ -203,7 +203,7 @@ public class WorldCube : MonoBehaviour {
         back.SliceLeft();
     }
 
-    void ShaveTop()
+    public void ShaveTop()
     {
         if (height <= 1)
             return;
@@ -224,7 +224,7 @@ public class WorldCube : MonoBehaviour {
         back.SliceBottom();
     }
 
-    void ShaveLeft()
+    public void ShaveLeft()
     {
         if (width <= 1)
             return;
@@ -244,7 +244,7 @@ public class WorldCube : MonoBehaviour {
         back.SliceRight();
     }
 
-    void ShaveBottom()
+    public void ShaveBottom()
     {
         if (height <= 1)
             return;
@@ -265,7 +265,7 @@ public class WorldCube : MonoBehaviour {
         back.SliceTop();
     }
 
-    void ShaveFront()
+    public void ShaveFront()
     {
         if (depth <= 1)
             return;
@@ -285,7 +285,7 @@ public class WorldCube : MonoBehaviour {
         top.SliceTop();
     }
 
-    void ShaveBack()
+    public void ShaveBack()
     {
         if (depth <= 1)
             return;
