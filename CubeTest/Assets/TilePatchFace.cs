@@ -151,7 +151,7 @@ public class TilePatchFace : MonoBehaviour {
         t.transform.parent = null;
         Rigidbody rb = t.GetComponent<Rigidbody>();
         rb.isKinematic = false;
-        rb.AddExplosionForce(400, Vector3.zero, 100);
+        rb.AddExplosionForce(400, WorldCube.instance.center, 100);
     }
 
     public void removeAll()

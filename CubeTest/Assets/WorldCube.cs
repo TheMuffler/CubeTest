@@ -4,6 +4,16 @@ using System.Collections.Generic;
 
 public class WorldCube : MonoBehaviour {
 
+    private static WorldCube _instance;
+    public static WorldCube instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
+
+
     [HideInInspector]
     public TilePatchFace[] faces = new TilePatchFace[6];
 
@@ -87,6 +97,17 @@ public class WorldCube : MonoBehaviour {
     }
 
 
+    public Vector3 center
+    {
+        get {
+            return transform.position + transform.right * lrOffset + transform.up * tbOffset + transform.forward * fbOffset;
+        }
+    }
+
+    void Awake()
+    {
+        _instance = this;
+    }
 
     // Use this for initialization
     void Start() {
