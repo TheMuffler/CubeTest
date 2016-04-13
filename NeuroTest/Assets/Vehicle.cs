@@ -23,7 +23,7 @@ public class Vehicle : MonoBehaviour {
             param = new float[Vehicle.raycount*2*powers];
             for (int i = 0; i < param.Length; ++i)
             {
-                param[i] = -1f+Random.value*2;
+                param[i] = -1f/5f+Random.value*2 / 5f;
             }
         }
 
@@ -43,7 +43,7 @@ public class Vehicle : MonoBehaviour {
             {
                 if (Random.value <= 0.05f)
                 {
-                    param[i] = -1f + Random.value * 2;
+                    param[i] = -1f / 5f + Random.value * 2 / 5f;
                 }
             }
         }
@@ -101,8 +101,8 @@ public class Vehicle : MonoBehaviour {
         {
             for (int p = 0; p < Vehicle.powers; ++p)
             {
-                torque += rays[i] * genes.turnweight(i,p) * 5;
-                accel += rays[i] * genes.accelweight(i,p);
+                torque += Mathf.Pow(rays[i], p + 1) * genes.turnweight(i,p);
+                accel += Mathf.Pow(rays[i],p+1) * genes.accelweight(i,p)/5f;
             }
         }
 

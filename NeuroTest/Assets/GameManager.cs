@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
 
     void Awake()
     {
+        Application.runInBackground = true;
         _instance = this;
     }
 
@@ -63,6 +64,9 @@ public class GameManager : MonoBehaviour {
          {
              v.genes = new Vehicle.Geneset(GetRandGenes(), GetRandGenes());
          }
+        Camera.main.transform.parent = v.transform;
+        Camera.main.transform.localPosition = Vector3.up;
+        Camera.main.transform.localRotation = Quaternion.identity;
     }
 
     public void RecordGenes(Vehicle v)
@@ -78,6 +82,7 @@ public class GameManager : MonoBehaviour {
         genes.score = Mathf.Pow(genes.score, 2);
 
         nextGenScore += genes.score;
+        Camera.main.transform.parent = null;
         Destroy(v.gameObject);
 
         if (nextGeneration.Count >= 20)
