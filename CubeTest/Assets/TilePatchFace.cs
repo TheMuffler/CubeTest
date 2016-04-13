@@ -49,6 +49,26 @@ public class TilePatchFace : MonoBehaviour {
                 tile.transform.localRotation = Quaternion.identity;
                 tile.transform.localPosition = new Vector3(-tw / 2f + i + 0.5f, 0, -th / 2f + j + 0.5f);
                 tiles[i, j] = tile;
+                if (i > 0)
+                {
+                    SpringJoint dj = tile.AddComponent<SpringJoint>();
+                    dj.connectedBody = tiles[i - 1, j].GetComponent<Rigidbody>();
+                    dj.anchor = new Vector3(0.5f,0,0);
+                    dj.connectedAnchor = new Vector3(-0.5f,0,0);
+                    dj.minDistance = dj.maxDistance = 0;// Vector3.Distance(tile.transform.position, tiles[i - 1, j].transform.position);
+                    
+                    //dj.spring = Mathf.Infinity;
+                }
+                if (false&&j > 0)
+                {
+                    SpringJoint dj = tile.AddComponent<SpringJoint>();
+                    dj.connectedBody = tiles[i, j - 1].GetComponent<Rigidbody>();
+                    //dj.anchor = new Vector3(0, 0, 0.5f);
+                    //dj.connectedAnchor = new Vector3(0, 0, -0.5f);
+                    dj.minDistance = dj.maxDistance = Vector3.Distance(tile.transform.position, tiles[i, j - 1].transform.position);
+                    
+                    //dj.spring = Mathf.Infinity;
+                }
             }
         }
     }
