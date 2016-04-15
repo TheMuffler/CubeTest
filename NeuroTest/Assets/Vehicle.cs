@@ -9,18 +9,25 @@ public class Vehicle : MonoBehaviour {
     {
         public float score = 0;
         public float[] param;
-        public float accelweight(int i, int power = 1)
+        public float accelweight(int i, int power = 0)
         {
             return param[Vehicle.raycount*power+i];
         }
-        public float turnweight(int i,int power = 1)
+        public float turnweight(int i,int power = 0)
         {
             return param[Vehicle.raycount * Vehicle.powers + Vehicle.raycount * power + i];
+        }
+        public float accelConst(){
+            return param[Vehicle.raycount*Vehicle.powers*2];
+        }
+        public float turnConst()
+        {
+            return param[Vehicle.raycount * Vehicle.powers * 2 + 1];
         }
 
         public Geneset()
         {
-            param = new float[Vehicle.raycount*2*powers];
+            param = new float[Vehicle.raycount*2*powers+2];
             for (int i = 0; i < param.Length; ++i)
             {
                 param[i] = -1f/5f+Random.value*2 / 5f;
@@ -29,7 +36,7 @@ public class Vehicle : MonoBehaviour {
 
         public Geneset(Geneset a, Geneset b)
         {
-            param = new float[Vehicle.raycount*2*powers];
+            param = new float[Vehicle.raycount*2*powers+2];
             HashSet<int> bset = new HashSet<int>();
             while (bset.Count < param.Length/2)
             {
@@ -93,9 +100,11 @@ public class Vehicle : MonoBehaviour {
             bool result = Physics.Raycast(ray, out hit, 1000, ~(1 << 8));
             rays[i] = result ? hit.distance : 0;
             Debug.DrawLine(ray.origin,ray.origin+ray.direction*hit.distance, Color.red);
+            if (!result)
+                GameManager.instance.RecordGenes(this);
         }
 
-        accel = 0;
+        accel = genes.accelConst()/5f;
         torque = 0;
         for (int i = 0; i < rays.Length; ++i)
         {
